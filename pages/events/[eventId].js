@@ -4,6 +4,8 @@ import { getEventById, getFeaturedEvents } from "@/helpers/api-util";
 import EventSummary from "@/components/event-detail/event-summary";
 import EventLogistics from "@/components/event-detail/event-logistics";
 import EventContent from "@/components/event-detail/event-content";
+import firebase_app from "@/firebase/config";
+import { getStorage, ref, getDownloadURL } from "@firebase/storage";
 
 function EventDetailPage(props) {
     const event = props.selectedEvent;
@@ -35,10 +37,12 @@ function EventDetailPage(props) {
 export async function getStaticProps(context) {
     const eventId = context.params.eventId;
     const event = await getEventById(eventId);
-    console.log(event);
+    const storage = getStorage(firebase_app);
+
+    const imageURL = await getDownloadURL(ref(storage, event.image));
     return {
         props: {
-            selectedEvent: event,
+            selectedEvent: { ...event, image: imageURL },
         },
     };
 }

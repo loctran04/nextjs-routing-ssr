@@ -1,9 +1,11 @@
-const api_url =
-    "https://nextjs-practice-8f538-default-rtdb.asia-southeast1.firebasedatabase.app/";
+import firebase_app from "@/firebase/config";
+import { getDatabase, ref, get, child } from "@firebase/database";
+
+const database = ref(getDatabase(firebase_app));
 
 export async function getAllEvents() {
-    const response = await fetch(`${api_url}events.json`);
-    const data = await response.json();
+    const response = await get(child(database, "events"));
+    const data = response.val();
     const events = [];
     for (const key in data) {
         events.push({
@@ -20,8 +22,8 @@ export async function getFeaturedEvents() {
 }
 
 export async function getEventById(eventId) {
-    const response = await fetch(`${api_url}events/${eventId}.json`);
-    const event = await response.json();
+    const response = await get(child(database, `events/${eventId}`));
+    const event = response.val();
     return event;
 }
 
