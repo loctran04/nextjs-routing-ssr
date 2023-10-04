@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-
+import Head from "next/head";
 import { getFilteredEvents } from "@/helpers/api-util";
 import EventList from "../../components/events/event-list";
 import ResultsTitle from "../../components/events/results-title";
@@ -10,10 +10,19 @@ function FilteredEventsPage({ filteredEvents, hasError, date }) {
     if (!filteredEvents) {
         return <p className="center">Loading...</p>;
     }
-
+    const headData = (
+        <Head>
+            <title>Filtered Events</title>
+            <meta
+                name="description"
+                content="Filtered event for specific month and year"
+            />
+        </Head>
+    );
     if (hasError) {
         return (
             <Fragment>
+                {headData}
                 <ErrorAlert>
                     <p>Invalid filter. Please adjust your values!</p>
                 </ErrorAlert>
@@ -27,6 +36,7 @@ function FilteredEventsPage({ filteredEvents, hasError, date }) {
     if (!filteredEvents || filteredEvents.length === 0) {
         return (
             <Fragment>
+                {headData}
                 <ErrorAlert>
                     <p>No events found for the chosen filter!</p>
                 </ErrorAlert>
