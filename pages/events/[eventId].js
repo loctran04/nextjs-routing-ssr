@@ -6,6 +6,7 @@ import EventLogistics from "@/components/event-detail/event-logistics";
 import EventContent from "@/components/event-detail/event-content";
 import firebase_app from "@/firebase/config";
 import { getStorage, ref, getDownloadURL } from "@firebase/storage";
+import Comments from "@/components/input/comments";
 
 function EventDetailPage(props) {
     const event = props.selectedEvent;
@@ -30,6 +31,7 @@ function EventDetailPage(props) {
             <EventContent>
                 <p>{event.description}</p>
             </EventContent>
+            <Comments eventId={event.id} />
         </Fragment>
     );
 }

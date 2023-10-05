@@ -4,6 +4,7 @@ import EventList from "@/components/events/event-list";
 import { getFeaturedEvents } from "@/helpers/api-util";
 import { getDownloadURL, getStorage, ref } from "@firebase/storage";
 import firebase_app from "@/firebase/config";
+import NewsletterRegistration from "@/components/input/newsletter-registration";
 
 function HomePage(props) {
     return (
@@ -16,6 +17,7 @@ function HomePage(props) {
                     content="This all featured events that you can join"
                 />
             </Head>
+            <NewsletterRegistration />
             <EventList items={props.featuredEvents} />
         </div>
     );
