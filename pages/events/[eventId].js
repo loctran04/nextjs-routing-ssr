@@ -44,7 +44,7 @@ export async function getStaticProps(context) {
     const imageURL = await getDownloadURL(ref(storage, event.image));
     return {
         props: {
-            selectedEvent: { ...event, image: imageURL },
+            selectedEvent: { ...event, image: imageURL, id: eventId },
         },
     };
 }
