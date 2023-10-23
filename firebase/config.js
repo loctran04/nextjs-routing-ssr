@@ -6,7 +6,7 @@ import { getApps, initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyC-t5o49skHkxhVAIwUyA98eTd4TDT8VHg",
+    apiKey: process.env.API_KEY,
     authDomain: "nextjs-practice-8f538.firebaseapp.com",
     databaseURL:
         "https://nextjs-practice-8f538-default-rtdb.asia-southeast1.firebasedatabase.app",

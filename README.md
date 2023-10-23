@@ -2,7 +2,12 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First, create DB
+
+create `.env.local`
+Create your own firebase realtime db and update the API_KEY in `env` file base on your DB info
+
+Then, run the development server:
 
 ```bash
 npm run dev
